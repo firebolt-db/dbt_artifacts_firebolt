@@ -1,13 +1,3 @@
-{% macro firebolt__alter_relation_comment(relation, comment) %}
-  {# This is a no-op macro for Firebolt as it doesn't support relation comments #}
-  SELECT 1;
-{% endmacro %}
-
-{% macro firebolt__alter_column_comment(relation, column_dict) %}
-  {# This is a no-op macro for Firebolt as it doesn't support column comments #}
-  SELECT 1;
-{% endmacro %}
-
 {% macro firebolt__str_left(col, length) %}
     substring({{ col }}, 1, {{ length }})
 {% endmacro %}

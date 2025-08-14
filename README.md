@@ -8,14 +8,12 @@ The `dbt_artifacts` package builds a mart of tables and views describing the pro
 
 ## Installation
 
-Add both packages to your `packages.yml` file:
+Add the package to your `packages.yml` file:
 
 ```yaml
 packages:
-  - package: brooklyn-data/dbt_artifacts
-    version: [">=2.0.0", "<3.0.0"]
-  - git: "https://github.com/your-username/dbt_artifacts_firebolt.git"
-    revision: main
+  - package: firebolt-db/dbt_artifacts_firebolt
+    version: 0.1.0
 ```
 
 Run `dbt deps` to install the packages.
@@ -34,6 +32,15 @@ For production-only tracking, use a conditional:
 ```yaml
 on-run-end:
   - "{% if target.name == 'prod' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
+```
+
+Disable documentation persistence, since Firebolt does not support table-level and column-level comments:
+In `dbt_project.yml` add to your `models` section:
+```yaml
+models:
+  +persist_docs:
+    relation: false
+    columns: false
 ```
 
 ## Usage
