@@ -40,3 +40,4 @@ venv/
 # DBT
 target/
 dbt_packages/
+package-lock.yml
